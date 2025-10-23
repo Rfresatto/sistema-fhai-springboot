@@ -1,12 +1,49 @@
 package br.com.fiap.fhai.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.fiap.fhai.model.Usuario;
+import br.com.fiap.fhai.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
+    @Autowired
+    private UsuarioService usuarioService;
 
+    // Método que cria um novo usuário
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Usuario cadastrar(@RequestBody Usuario usuario) {
+        return usuarioService.cadastrar(usuario);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Usuario> buscarTodos() {
+        return usuarioService.buscarTodos();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Usuario buscarPorId(@PathVariable int id) {
+        return usuarioService.buscarPorId(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluir(@PathVariable int id) {
+        usuarioService.excluir(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Usuario atualizar(@PathVariable int id, @RequestBody Usuario usuario) {
+        return usuarioService.atualizar(id, usuario);
+    }
 }

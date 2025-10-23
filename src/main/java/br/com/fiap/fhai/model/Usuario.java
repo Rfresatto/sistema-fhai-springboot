@@ -19,16 +19,21 @@ public class Usuario {
     @Column(name = "NR_CONTATO")
     private long contato;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ID_ENDERECO")
+    private Endereco endereco;
+
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String senha, String sexo, String email, long contato) {
+    public Usuario(int id, String nome, String senha, String sexo, String email, long contato, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.sexo = sexo;
         this.email = email;
         this.contato = contato;
+        this.endereco = endereco;
     }
 
     public int getId() {
@@ -77,5 +82,13 @@ public class Usuario {
 
     public void setContato(long contato) {
         this.contato = contato;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
