@@ -1,9 +1,10 @@
-package br.com.fiap.fhai.model;
+package br.com.fiap.fhai.transacao.model;
 
+import br.com.fiap.fhai.cartao.model.Cartao;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "T_FHAI_TRANSACAO")
+@Table(name = "T_FHAI_TRANSACOES")
 public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TRANSACOES")
@@ -13,6 +14,9 @@ public class Transacao {
     private String ds_transacao;
     private String vl_transacao;
     private String tp_transacao;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CARTAO")
     private Cartao cartao;
 
     public Transacao() {

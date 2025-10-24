@@ -1,14 +1,17 @@
-package br.com.fiap.fhai.model;
+package br.com.fiap.fhai.cartao.model;
 
+import br.com.fiap.fhai.contaBancaria.model.ContaBancaria;
+import br.com.fiap.fhai.transacao.model.Transacao;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "T_FHAI_CARTAO")
 public class Cartao {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CARTAO")
-    @SequenceGenerator(name = "SEQ_CONTA", sequenceName = "SEQ_CONTA", allocationSize = 1)
+    @SequenceGenerator(name = "SEQ_CARTAO", sequenceName = "SEQ_CARTAO", allocationSize = 1)
     private int id_cartao;
     private String nm_cartao;
     private long nr_cartao;
@@ -16,13 +19,18 @@ public class Cartao {
     private String nm_titular;
     private String dt_validade;
     private double vl_saldo;
-    private int idConta;
-    private Transacao transacao;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CONTA")
+    private ContaBancaria contaBancaria;
+
+    @OneToMany(mappedBy = "cartao")
+    private List<Transacao> transacoes;
 
     public Cartao() {
     }
 
-    public Cartao(int id_cartao, String nm_cartao, long nr_cartao, String tp_cartao, String nm_titular, String dt_validade, double vl_saldo, int idConta, Transacao transacao) {
+    public Cartao(int id_cartao, String nm_cartao, long nr_cartao, String tp_cartao, String nm_titular, String dt_validade, double vl_saldo, ContaBancaria contaBancaria) {
         this.id_cartao = id_cartao;
         this.nm_cartao = nm_cartao;
         this.nr_cartao = nr_cartao;
@@ -30,8 +38,7 @@ public class Cartao {
         this.nm_titular = nm_titular;
         this.dt_validade = dt_validade;
         this.vl_saldo = vl_saldo;
-        this.idConta = idConta;
-        this.transacao = transacao;
+        this.contaBancaria = contaBancaria;
     }
 
     public int getId_cartao() {
@@ -90,19 +97,19 @@ public class Cartao {
         this.vl_saldo = vl_saldo;
     }
 
-    public int getIdConta() {
-        return idConta;
+    public ContaBancaria getContaBancaria() {
+        return contaBancaria;
     }
 
-    public void setIdConta(int idConta) {
-        this.idConta = idConta;
+    public void setContaBancaria(ContaBancaria contaBancaria) {
+        this.contaBancaria = contaBancaria;
     }
 
-    public Transacao getTransacao() {
-        return transacao;
+    public List<Transacao> getTransacoes() {
+        return transacoes;
     }
 
-    public void setTransacao(Transacao transacao) {
-        this.transacao = transacao;
+    public void setTransacoes(List<Transacao> transacoes) {
+        this.transacoes = transacoes;
     }
 }

@@ -1,7 +1,7 @@
-package br.com.fiap.fhai.service;
+package br.com.fiap.fhai.transacao.service;
 
-import br.com.fiap.fhai.model.Transacao;
-import br.com.fiap.fhai.repository.TransacaoRepository;
+import br.com.fiap.fhai.transacao.model.Transacao;
+import br.com.fiap.fhai.transacao.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

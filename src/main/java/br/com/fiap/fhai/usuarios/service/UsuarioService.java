@@ -1,9 +1,7 @@
-package br.com.fiap.fhai.service;
+package br.com.fiap.fhai.usuarios.service;
 
-import br.com.fiap.fhai.model.Endereco;
-import br.com.fiap.fhai.model.Usuario;
-import br.com.fiap.fhai.repository.EnderecoRepository;
-import br.com.fiap.fhai.repository.UsuarioRepository;
+import br.com.fiap.fhai.usuarios.model.Usuario;
+import br.com.fiap.fhai.usuarios.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,20 +47,5 @@ public class UsuarioService {
         } else {
             throw new RuntimeException("Usuário não encontrado.");
         }
-    }
-
-    public Usuario adicionarEndereco(int id, Endereco endereco) {
-        Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        usuario.setEndereco(endereco);
-        return usuarioRepository.save(usuario);
-    }
-
-    public boolean enderecoCompleto(int idUsuario) {
-        Usuario usuario = usuarioRepository.findById(idUsuario)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        return usuario.getEndereco() != null;
     }
 }
