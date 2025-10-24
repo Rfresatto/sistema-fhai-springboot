@@ -1,7 +1,7 @@
-package br.com.fiap.fhai.controller;
+package br.com.fiap.fhai.usuarios.controller;
 
-import br.com.fiap.fhai.model.Usuario;
-import br.com.fiap.fhai.service.UsuarioService;
+import br.com.fiap.fhai.usuarios.model.Usuario;
+import br.com.fiap.fhai.usuarios.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-
-    // Método que cria um novo usuário
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -1,8 +1,7 @@
-package br.com.fiap.fhai.service;
+package br.com.fiap.fhai.contaBancaria.service;
 
-import br.com.fiap.fhai.model.ContaBancaria;
-import br.com.fiap.fhai.model.Usuario;
-import br.com.fiap.fhai.repository.ContaBancariaRepository;
+import br.com.fiap.fhai.contaBancaria.model.ContaBancaria;
+import br.com.fiap.fhai.contaBancaria.repository.ContaBancariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

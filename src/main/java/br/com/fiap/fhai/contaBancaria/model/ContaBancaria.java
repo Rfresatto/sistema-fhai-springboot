@@ -1,5 +1,6 @@
-package br.com.fiap.fhai.model;
+package br.com.fiap.fhai.contaBancaria.model;
 
+import br.com.fiap.fhai.usuarios.model.Usuario;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,19 +16,22 @@ public class ContaBancaria {
     private int agencia;
     private String tp_conta; // "corrente", "poupanca", "salario"
     private double vl_saldo ;
-    private int idUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_USUARIO")
+    private Usuario usuario;
 
     public ContaBancaria() {
     }
 
-    public ContaBancaria(int id_conta, String nm_banco, long nr_conta, int agencia, String tp_conta, double vl_saldo, int idUsuario) {
+    public ContaBancaria(int id_conta, String nm_banco, long nr_conta, int agencia, String tp_conta, double vl_saldo, Usuario usuario) {
         this.id_conta = id_conta;
         this.nm_banco = nm_banco;
         this.nr_conta = nr_conta;
         this.agencia = agencia;
         this.tp_conta = tp_conta;
         this.vl_saldo = vl_saldo;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
     }
 
     public int getId_conta() {
@@ -78,11 +82,11 @@ public class ContaBancaria {
         this.vl_saldo = vl_saldo;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

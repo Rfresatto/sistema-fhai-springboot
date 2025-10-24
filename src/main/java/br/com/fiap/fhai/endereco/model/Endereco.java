@@ -1,4 +1,4 @@
-package br.com.fiap.fhai.model;
+package br.com.fiap.fhai.endereco.model;
 
 import jakarta.persistence.*;
 
